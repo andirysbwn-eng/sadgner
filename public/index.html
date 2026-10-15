@@ -1,1 +1,193 @@
-
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI Studio</title>
+<script>(function(){let t='';try{t=localStorage.getItem('sc_theme')||'neon'}catch(e){}if(!['neon','sunset','terminal','ocean','studio'].includes(t))t='neon';document.documentElement.dataset.theme=t})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#090a1a;--panel:rgba(18,20,46,.72);--input:rgba(5,6,22,.75);--fg:#eaf0ff;--muted:#8f9bc4;--line:rgba(140,160,255,.22);--accent:#00e5ff;--accent2:#ff3df0;--accent-fg:#04101a;--rec:#ff4d6d;--ok:#3dffb0;--glow:rgba(0,229,255,.3);--g1:rgba(0,229,255,.16);--g2:rgba(255,61,240,.16);--radius:14px;--blur:blur(14px);--fd:'Unbounded',system-ui,sans-serif;--fb:'Instrument Sans',system-ui,sans-serif;--fm:'IBM Plex Mono',monospace;color-scheme:dark}
+:root[data-theme=sunset]{--bg:#19090f;--panel:rgba(46,17,30,.72);--input:rgba(22,6,12,.7);--fg:#fff0e6;--muted:#d4a39d;--line:rgba(255,150,120,.24);--accent:#ff8a4c;--accent2:#ff3d77;--accent-fg:#210a05;--rec:#ff5470;--ok:#5be3a1;--glow:rgba(255,110,70,.3);--g1:rgba(255,138,76,.17);--g2:rgba(255,61,119,.17)}
+:root[data-theme=terminal]{--bg:#040704;--panel:rgba(7,16,8,.9);--input:rgba(0,8,2,.9);--fg:#c4ffc9;--muted:#62a56a;--line:rgba(57,255,106,.3);--accent:#39ff6a;--accent2:#1fd9a8;--accent-fg:#021005;--rec:#ff5f5f;--ok:#39ff6a;--glow:rgba(57,255,106,.25);--g1:rgba(57,255,106,.08);--g2:rgba(31,217,168,.07);--radius:2px;--blur:none;--fd:'IBM Plex Mono',monospace;--fb:'IBM Plex Mono',monospace}
+:root[data-theme=ocean]{--bg:#04131b;--panel:rgba(8,38,54,.72);--input:rgba(2,16,24,.75);--fg:#e2f6ff;--muted:#84b3c6;--line:rgba(110,200,230,.24);--accent:#3de0cb;--accent2:#4d8bff;--accent-fg:#03191a;--rec:#ff6b81;--ok:#4ee3b5;--glow:rgba(61,224,203,.3);--g1:rgba(61,224,203,.15);--g2:rgba(77,139,255,.17)}
+:root[data-theme=studio]{--bg:#eceef6;--panel:rgba(255,255,255,.82);--input:#fff;--fg:#14161f;--muted:#5a6075;--line:#cdd2e0;--accent:#2b55f5;--accent2:#8a3dff;--accent-fg:#fff;--rec:#d6303f;--ok:#12805c;--glow:rgba(43,85,245,.2);--g1:rgba(43,85,245,.12);--g2:rgba(138,61,255,.12);color-scheme:light}
+*{box-sizing:border-box}body{margin:0;padding:22px 15px 50px;color:var(--fg);font:16px/1.5 var(--fb);background:radial-gradient(900px 520px at 8% -8%,var(--g1),transparent 62%),radial-gradient(800px 520px at 100% 0%,var(--g2),transparent 58%),var(--bg);background-attachment:fixed}.wrap{max-width:1050px;margin:auto}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:20px}h1{font:700 clamp(1.65rem,6vw,2.8rem)/1.1 var(--fd);margin:0 0 8px;letter-spacing:-.04em}.grad{background:linear-gradient(90deg,var(--accent),var(--accent2));color:var(--accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.sub{margin:0;color:var(--muted);max-width:58ch}.themes{display:flex;gap:7px;flex-wrap:wrap}.themes button,.small{color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:7px 10px;font:600 12px var(--fb);cursor:pointer}.themes button[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}.eq{display:flex;gap:4px;height:42px;margin:12px 0 22px;overflow:hidden}.eq i{flex:1;max-width:18px;border-radius:3px 3px 0 0;background:linear-gradient(var(--accent2),var(--accent));opacity:.6;animation:wave 1.4s ease-in-out infinite alternate;transform-origin:bottom}.eq i:nth-child(3n){animation-delay:.2s}.eq i:nth-child(4n){animation-delay:.5s}@keyframes wave{to{transform:scaleY(.15)}}.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px;align-items:start}.panel{min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;backdrop-filter:var(--blur);box-shadow:0 18px 50px -28px var(--glow)}h2{font:500 12px var(--fm);letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin:0 0 15px}label{display:block;font-size:14px;font-weight:600;margin:0 0 6px}.field{margin-bottom:15px}.hint{color:var(--muted);font-size:12px;font-weight:400;margin-top:4px}input,textarea,select{width:100%;font:inherit;color:var(--fg);background:var(--input);border:1px solid var(--line);border-radius:8px;padding:10px 11px}select option{background:var(--bg);color:var(--fg)}textarea{min-height:95px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.keybox{padding:13px;border:1px dashed var(--line);border-radius:10px;margin-bottom:18px}.keyrow{display:flex;gap:8px}.keyrow input{min-width:0}.keyrow button{flex:none}.btn{width:100%;font:700 15px var(--fb);padding:13px;border:0;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:var(--accent-fg);cursor:pointer}.btn:disabled{opacity:.55;cursor:wait}.secondary{font:600 13px var(--fb);padding:9px 13px;border:1px solid var(--accent);border-radius:999px;background:transparent;color:var(--accent);cursor:pointer}.status{font:500 13px var(--fm);padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--input);overflow-wrap:anywhere;margin-bottom:12px}.muted{color:var(--muted)}.result{margin-top:14px}.media{width:100%;max-height:350px;border-radius:9px;margin:10px 0}.link{color:var(--accent);overflow-wrap:anywhere}.json{white-space:pre-wrap;overflow-wrap:anywhere;max-height:360px;overflow:auto;font:12px/1.5 var(--fm);padding:12px;background:var(--input);border:1px solid var(--line);border-radius:8px}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.pill{border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:999px;padding:9px 13px;cursor:pointer;font:600 13px var(--fb)}.pill.active{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}.foot{color:var(--muted);font-size:12px;margin-top:16px}@media(max-width:760px){.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}.panel{padding:16px}.eq{height:32px}}
+.download-btn{display:inline-block;text-decoration:none;padding:9px 12px;border-radius:10px;margin-top:6px}.result .media{max-width:100%;width:100%;border-radius:12px}.result audio{width:100%}</style></head><body><div class="wrap">
+<header class="top"><div><h1><span class="grad">AI STUDIO</span></h1><p class="sub">Satu dashboard percobaan untuk menu Suno + Kling. Pakai API key milik lo sendiri, input media lewat URL publik.</p></div><div class="themes" id="themes"><button data-t="neon">Neon</button><button data-t="sunset">Sunset</button><button data-t="terminal">Terminal</button><button data-t="ocean">Ocean</button><button data-t="studio">Studio</button></div></header>
+<div class="eq" id="eq"></div>
+<section class="panel keybox"><h2>01 / API KEY</h2><div class="field"><label for="apiKey">API Key</label><div class="keyrow"><input id="apiKey" type="password" placeholder="Masukkan API key di sini" autocomplete="off"><button class="secondary" id="showKey" type="button">Lihat</button></div><div class="hint">Key hanya disimpan sementara di halaman ini dan dikirim ke endpoint server website lo saat request. Jangan bagikan key. Untuk deployment publik, lebih aman pakai Environment Variables di server.</div></div></section>
+<div class="nav" id="nav"><button class="pill active" data-group="suno">🎵 SUNO</button><button class="pill" data-group="kling">🎬 KLING</button></div>
+<div class="grid"><form class="panel" id="taskForm"><h2 id="formTitle">02 / SUNO GENERATOR</h2>
+<div class="field"><label for="operation">Menu API</label><select id="operation"></select><div class="hint" id="opHint"></div></div>
+<div id="dynamic"></div>
+<div class="field"><label for="channel">Channel</label><select id="channel"><option value="auto">Auto</option><option value="starter">Starter</option><option value="regular">Regular</option><option value="official">Official</option></select><div class="hint">Pilihan channel dan harga mengikuti layanan yang terhubung.</div></div>
+<button class="btn" id="submitBtn" type="submit">JALANKAN TASK ↗</button>
+<p class="foot">Tempel URL publik dari Image2URL untuk gambar/video/audio sumber. Link harus bisa diakses tanpa login; versi ini memakai URL langsung, bukan upload file galeri.</p></form>
+<section class="panel"><h2>03 / HASIL GENERATE</h2><div class="status" id="state">Siap. Masukkan API key, pilih menu, lalu jalankan generate.</div><div class="result" id="result"></div><details id="errorDetails" style="margin-top:16px" hidden><summary>Detail error</summary><pre class="json" id="raw">Belum ada error.</pre></details></section></div>
+<p class="foot">AI Studio • Suno & Kling • jangan taruh API key di repository publik.</p></div>
+<script>
+const $=id=>document.getElementById(id);let group='suno',lastResponse=null;
+const menus={suno:[
+{id:'generate',label:'Generate Music',model:'suno/generate',hint:'Buat lagu dari deskripsi atau lirik.',fields:[['prompt','Deskripsi / lirik','textarea','Contoh: upbeat EDM DJ, emotional vocal, big drop'],['style','Style musik','text','EDM, DJ remix, melodic house'],['title','Judul lagu','text','Judul lagu'],['model_version','Versi model','select',['V6','V6_MINI','V6_WILD']],['customMode','Mode custom','check',true],['instrumental','Instrumental (tanpa vokal)','check',false]]},
+{id:'lyrics',label:'Generate Lyrics',model:'suno/lyrics',hint:'Buat lirik dari ide tema.',fields:[['prompt','Tema / ide lirik','textarea','Tema lagu yang ingin dibuat'],['style','Genre / style (opsional)','text','Sad pop, EDM, dangdut'] ]},
+{id:'cover',label:'Cover Generate',model:'suno/v5/cover',hint:'Buat cover dari audio URL publik.',fields:[['audioUrl','URL audio sumber','url','https://.../lagu.mp3'],['prompt','Arahan cover','textarea','Ubah menjadi EDM festival, pertahankan melodi utama'],['style','Style musik','text','EDM, festival'],['title','Judul','text','Judul cover'],['model_version','Versi model','select',['V5','V4_5','V4']]]},
+{id:'extend',label:'Extend Song',model:'suno/v5/extend',hint:'Lanjutkan lagu Suno yang sudah ada. Periksa parameter di dokumentasi model akun lo.',fields:[['audio_id','Audio ID','text','Audio ID hasil Suno'],['continue_at','Lanjut dari detik ke-','number','60'],['prompt','Arahan lanjutan','textarea','Lanjutkan chorus dan outro'],['style','Style','text','EDM'],['title','Judul','text','Extended version']]},
+{id:'uploadExtend',label:'Upload & Extend (pakai link)',model:'suno/upload-extend',hint:'Masukkan URL audio publik; versi ini tidak meng-upload file lokal.',fields:[['audioUrl','URL audio publik','url','https://.../audio.mp3'],['continueAt','Lanjut dari detik ke-','number','60'],['prompt','Arahan lanjutan','textarea','Build into an epic chorus'],['style','Style musik','text','Pop Rock, EDM'],['title','Judul','text','My Extended Song'],['model_version','Versi model','select',['V6','V6_MINI','V6_WILD']]]},
+{id:'separation',label:'Separate Vocals',model:'suno/vocal-separation',hint:'Pisahkan vokal/instrumental dari audio URL jika endpoint akun mendukung.',fields:[['audioUrl','URL audio publik','url','https://.../audio.mp3']]}
+],kling:[
+{id:'klingv3',label:'Kling v3 Text-to-Video',model:'kling/kling-v3-video',hint:'Buat video dari prompt teks.',fields:[['prompt','Prompt video','textarea','Cinematic scene, dynamic camera movement, high detail'],['mode','Mode','select',['std','pro']],['aspect_ratio','Aspect ratio','select',['16:9','9:16','1:1']],['duration','Durasi (detik)','select',['5','10']],['generate_audio','Generate audio','check',false]]},
+{id:'kling26',label:'Kling 2.6 Image-to-Video',model:'kling/kling-2-6',hint:'Masukkan URL gambar dari Image2URL; model ini memakai gambar sebagai frame awal.',fields:[['prompt','Prompt gerakan','textarea','Slow cinematic camera push-in, natural movement'],['start_image','Link foto / gambar (Image2URL)','url','https://www.image2url.com/.../image.jpg'],['duration','Durasi (detik)','select',['5','10']],['aspect_ratio','Aspect ratio','select',['16:9','9:16','1:1']],['generate_audio','Generate audio','check',true]]},
+{id:'klingmotion26',label:'Kling 2.6 Motion Control',model:'kling/kling-2-6-motion-control',hint:'Motion Control wajib memakai dua URL publik: link foto karakter dan link video referensi gerakan. Upload keduanya ke Image2URL lalu tempel direct link-nya.',fields:[['image','Upload foto link (Image2URL)','url','https://www.image2url.com/.../character.jpg'],['video','Upload video link (Image2URL)','url','https://www.image2url.com/.../motion.mp4'],['prompt','Prompt tambahan (opsional)','textarea','Contoh: natural movement, cinematic lighting'],['character_orientation','Arah karakter','select',['video','image']],['mode','Kualitas video','select',['std','pro']],['keep_original_sound','Pertahankan suara video asli','check',true]]},
+{id:'klingref',label:'Kling Video (URL reference)',model:'kling/kling-v3-video',hint:'Menu eksperimen: isi URL gambar awal bila model/channel mendukungnya.',fields:[['prompt','Prompt video','textarea','Describe the scene and motion'],['start_image','URL gambar awal (opsional)','url','https://.../image.jpg'],['end_image','URL gambar akhir (opsional)','url','https://.../end.jpg'],['mode','Mode','select',['std','pro']],['aspect_ratio','Aspect ratio','select',['16:9','9:16','1:1']],['duration','Durasi (detik)','select',['5','10']]]}
+]};
+function makeField(f){let [name,label,type,extra]=f,id='f_'+name,html='';if(type==='textarea')html=`<textarea id="${id}" placeholder="${esc(extra||'')}" ${name==='prompt'&&$('operation')?.value!=='klingmotion26'?'required':''}></textarea>`;else if(type==='select')html=`<select id="${id}">${extra.map(x=>{const label=name==='mode'&&group==='kling'&&$('operation')?.value==='klingmotion26'?(x==='std'?'720':x==='pro'?'1080':x):x;return `<option value="${esc(x)}">${esc(label)}</option>`}).join('')}</select>`;else if(type==='check')html=`<label style="display:flex;gap:9px;align-items:center"><input id="${id}" type="checkbox" style="width:18px;height:18px;accent-color:var(--accent)" ${extra?'checked':''}> ${esc(label)}</label>`;else html=`<input id="${id}" type="${type==='number'?'number':type==='url'?'url':'text'}" placeholder="${esc(extra||'')}" ${type==='number'?'min="1"':''} ${type==='url'?'inputmode="url"':''}>`;return `<div class="field">${type==='check'?'':`<label for="${id}">${esc(label)}</label>`}${html}</div>`}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderMenu(){let list=menus[group];$('operation').innerHTML=list.map(x=>`<option value="${x.id}">${x.label}</option>`).join('');renderFields()}
+function renderFields(){let item=menus[group].find(x=>x.id===$('operation').value)||menus[group][0];$('formTitle').textContent='02 / '+group.toUpperCase()+' GENERATOR';$('opHint').textContent=item.hint;$('dynamic').innerHTML=item.fields.map(makeField).join('');$('submitBtn').textContent='JALANKAN '+(group==='suno'?'SUNO':'KLING')+' TASK ↗'}
+function switchGroup(g){group=g;document.querySelectorAll('[data-group]').forEach(b=>b.classList.toggle('active',b.dataset.group===g));renderMenu()}
+document.querySelectorAll('[data-group]').forEach(b=>b.onclick=()=>switchGroup(b.dataset.group));$('operation').onchange=renderFields;
+document.querySelectorAll('[data-t]').forEach(b=>{b.onclick=()=>{document.documentElement.dataset.theme=b.dataset.t;try{localStorage.setItem('sc_theme',b.dataset.t)}catch(e){}document.querySelectorAll('[data-t]').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'))};b.setAttribute('aria-pressed',b.dataset.t===(document.documentElement.dataset.theme||'neon')?'true':'false')});
+$('showKey').onclick=()=>{let k=$('apiKey');k.type=k.type==='password'?'text':'password';$('showKey').textContent=k.type==='password'?'Lihat':'Sembunyi'};
+function getInput(item){let out={};for(const [name,label,type,extra] of item.fields){const el=$('f_'+name);if(!el)continue;let val=type==='check'?el.checked:el.value.trim();if(type==='number')val=Number(val||extra||0);if(type==='select'&&['duration','continueAt','continue_at'].includes(name))val=Number(val);if(type==='check'||val!==''&&val!==null)out[name]=val}
+// map model-specific form values to common fields where needed
+if(item.id==='generate'){out.customMode=!!out.customMode;out.instrumental=!!out.instrumental}
+if(item.id==='klingv3'||item.id==='klingref'){out.duration=Number(out.duration||5);out.generate_audio=!!out.generate_audio}
+if(item.id==='kling26'){out.duration=Number(out.duration||5);out.generate_audio=!!out.generate_audio}
+if(item.id==='klingmotion26'){out.keep_original_sound=!!out.keep_original_sound;out.character_orientation=out.character_orientation||'video';out.mode=out.mode||'std';delete out.image;delete out.video;if($('f_image'))out.image=$('f_image').value.trim();if($('f_video'))out.video=$('f_video').value.trim()}
+return out}
+function parseJSON(text){try{return JSON.parse(text)}catch(e){return {raw:text}}}
+function normalizeResult(data){
+  let d=data;
+  // The service sometimes returns resultJson as an object and sometimes as JSON text.
+  for(let i=0;i<4;i++){
+    if(!d||typeof d!=='object')break;
+    if(typeof d.resultJson==='string'){try{d={...d,resultJson:JSON.parse(d.resultJson)}}catch(e){break}}
+    if(typeof d.data==='string'&&(d.data.trim().startsWith('{')||d.data.trim().startsWith('['))){try{d={...d,data:JSON.parse(d.data)}}catch(e){break}}
+    break;
+  }
+  return d;
+}
+function collectMedia(obj){
+  const found=[];const seen=new Set();
+  const add=(url,type,label,meta)=>{if(typeof url!=='string'||!/^https?:\/\//i.test(url)||seen.has(url))return;seen.add(url);found.push({url,type,label,meta})};
+  const urlType=(url,key='')=>{const k=String(key).toLowerCase(),u=String(url).toLowerCase();if(/audio|music|mp3|wav|m4a/.test(k)||/\.(mp3|wav|m4a|ogg)(?:[?#]|$)/i.test(u)||/audio/.test(u))return 'audio';if(/image|cover|thumbnail|jpg|jpeg|png/.test(k)||/\.(png|jpe?g|webp|gif)(?:[?#]|$)/i.test(u)||/image/.test(u))return 'image';if(/video|mp4|webm/.test(k)||/\.(mp4|webm|mov)(?:[?#]|$)/i.test(u)||/video/.test(u))return 'video';return 'link'};
+  function walk(v,key='',depth=0){if(v==null||depth>12)return;if(typeof v==='string'){const t=v.trim();if(/^https?:\/\//i.test(t)){add(t,urlType(t,key),key||'Media',null)}else if(t.startsWith('{')||t.startsWith('[')){try{walk(JSON.parse(t),key,depth+1)}catch(e){}}return;}if(Array.isArray(v)){v.forEach((x,i)=>walk(x,key,depth+1));return;}if(typeof v==='object'){const mediaKeys=[['audio_url','audio'],['audioUrl','audio'],['audio_url_list','audio'],['image_url','image'],['imageUrl','image'],['cover_url','image'],['video_url','video'],['videoUrl','video'],['video','video'],['video_url_list','video'],['result_url','link'],['resultUrl','link'],['output_url','link'],['outputUrl','link'],['play_url','audio'],['source_url','link']];for(const [k,type] of mediaKeys){const val=v[k];if(typeof val==='string')add(val,type,k,v);else if(Array.isArray(val))val.forEach(x=>typeof x==='string'&&add(x,type,k,v));}Object.entries(v).forEach(([k,x])=>walk(x,k,depth+1));}}
+  walk(normalizeResult(obj));return found;
+}
+function findSunoTracks(root){
+  const seen=new Set();
+  function parse(v){if(typeof v==='string'){const t=v.trim();if(t.startsWith('{')||t.startsWith('[')){try{return JSON.parse(t)}catch(e){}}}return v}
+  function walk(v,depth=0){v=parse(v);if(!v||typeof v!=='object'||depth>14)return null;if(seen.has(v))return null;seen.add(v);
+    // recordInfo response: data.resultJson.data = two song variations.
+    if(v.resultJson!==undefined){const r=parse(v.resultJson);if(r&&Array.isArray(r.data)&&r.data.some(x=>x&&(x.audio_url||x.site_audio_url)))return r.data;const nested=walk(r,depth+1);if(nested)return nested;}
+    if(Array.isArray(v.data)&&v.data.some(x=>x&&(x.audio_url||x.site_audio_url)))return v.data;
+    for(const value of Object.values(v)){const found=walk(value,depth+1);if(found)return found;}
+    return null;
+  }
+  return walk(root)||[];
+}
+function showData(data){
+  lastResponse=data;$('raw').textContent=JSON.stringify(data,null,2);
+  const normalized=normalizeResult(data);let html='';
+  const tracks=findSunoTracks(normalized);
+  if(tracks.length){
+    html+='<h3>🎵 Hasil Suno</h3><p class="muted">'+tracks.length+' variasi lagu ditemukan.</p>';
+    tracks.forEach((track,i)=>{
+      if(!track||typeof track!=='object')return;
+      const audio=track.audio_url||track.site_audio_url||track.audioUrl||track.play_url||'';
+      const cover=track.image_url||track.site_image_url||track.cover_url||track.imageUrl||'';
+      const title=esc(track.title||('Lagu '+(i+1)));
+      const duration=Number(track.duration);
+      html+='<div class="field" style="border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0">';
+      html+='<h3 style="margin-top:0">'+(i+1)+'. '+title+'</h3>';
+      if(Number.isFinite(duration)&&duration>0)html+='<p class="muted">Durasi: '+Math.floor(duration/60)+'m '+Math.round(duration%60)+'s</p>';
+      if(cover)html+='<label>🖼️ Cover</label><img class="media" src="'+esc(cover)+'" alt="Cover '+title+'"><p><a class="secondary download-btn" href="'+esc(cover)+'" download target="_blank" rel="noopener">⬇ Unduh cover</a></p>';
+      if(audio)html+='<label>🎵 Putar lagu</label><audio class="media" controls preload="metadata" src="'+esc(audio)+'"></audio><p><a class="secondary download-btn" href="'+esc(audio)+'" download target="_blank" rel="noopener">⬇ Unduh lagu</a></p>';
+      if(!audio&&!cover)html+='<p class="muted">URL media belum tersedia untuk variasi ini.</p>';
+      html+='</div>';
+    });
+  } else {
+    const media=collectMedia(normalized);
+    if(media.length){html+='<h3>Hasil / Media</h3>';for(const m of media){const u=esc(m.url),label=String(m.label||'').replace(/[_-]/g,' ');if(m.type==='audio'){html+='<div class="field"><label>🎵 Putar lagu'+(label&&label!=='Media'?' — '+esc(label):'')+'</label><audio class="media" controls preload="metadata" src="'+u+'"></audio><p><a class="secondary download-btn" href="'+u+'" download target="_blank" rel="noopener">⬇ Unduh lagu</a></p></div>'}else if(m.type==='image'){html+='<div class="field"><label>🖼️ Hasil gambar'+(label&&label!=='Media'?' — '+esc(label):'')+'</label><img class="media" src="'+u+'" alt="Hasil gambar"><p><a class="secondary download-btn" href="'+u+'" download target="_blank" rel="noopener">⬇ Unduh gambar</a></p></div>'}else if(m.type==='video'){const videoLabel=label&&label!=='Media'?' — '+esc(label):'';html+='<div class="field" style="border:1px solid var(--line);border-radius:12px;padding:12px;margin:12px 0"><label>🎬 Putar video'+videoLabel+'</label><video class="media" controls playsinline preload="metadata" src="'+u+'"></video><p><a class="secondary download-btn" href="'+u+'" download target="_blank" rel="noopener">⬇ Unduh video</a></p></div>'}}}
+  }
+  $('result').innerHTML=html||'<p class="muted">Hasil media akan muncul di sini setelah proses selesai.</p>';
+}
+function status(s,kind=''){ $('state').textContent=s;$('state').style.borderColor=kind==='err'?'var(--rec)':kind==='ok'?'var(--ok)':'var(--line)';}
+function redactProviderDetails(value){
+  if(typeof value==='string') return value
+    .replace(/https?:\/\/api\.apipass\.dev/gi,'[service endpoint]')
+    .replace(/https?:\/\/apipass\.dev[^\s"']*/gi,'[provider support link]')
+    .replace(/ApiPass/gi,'service provider')
+    .replace(/apipass\.dev/gi,'service provider');
+  if(Array.isArray(value)) return value.map(redactProviderDetails);
+  if(value&&typeof value==='object'){const out={};for(const [k,v] of Object.entries(value))out[k]=redactProviderDetails(v);return out}
+  return value;
+}
+function setErrorDetails(data){$('raw').textContent=JSON.stringify(redactProviderDetails(data),null,2);$('errorDetails').hidden=false}
+function hideErrorDetails(){$('errorDetails').hidden=true;$('raw').textContent='Belum ada error.'}
+function taskIdFrom(data){
+  const d=normalizeResult(data);
+  return d?.data?.taskId||d?.taskId||d?.data?.task_id||d?.data?.data?.taskId||d?.result?.taskId||null;
+}
+function taskState(data){
+  const d=normalizeResult(data);
+  return String(d?.data?.state||d?.data?.status||d?.state||d?.status||d?.data?.data?.state||'').toLowerCase();
+}
+function hasMedia(data){return collectMedia(data).length>0||findSunoTracks(data).length>0}
+async function pollTask(key,taskId,btn){
+  const maxAttempts=90;
+  for(let i=0;i<maxAttempts;i++){
+    await new Promise(resolve=>setTimeout(resolve,4000));
+    const r=await fetch('/api/status',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({apiKey:key,taskId})});
+    const t=await r.text(),d=parseJSON(t);
+    if(!r.ok||d.error||d.code&&d.code!==200){
+      showData(d);setErrorDetails(d);
+      status('Gagal cek hasil ('+r.status+'). Detail error ditampilkan di bawah.','err');return;
+    }
+    const state=taskState(d);
+    if(state==='success'||state==='succeeded'||state==='completed'||state==='complete'){
+      showData(d);
+      if(hasMedia(d)){status('Selesai! Hasil siap diputar dan diunduh.','ok');return}
+      // Some responses nest media in resultJson; showData already attempts to normalize.
+      status('Task selesai, tetapi URL media belum ditemukan. Periksa detail respons.','err');setErrorDetails(d);return;
+    }
+    if(['failed','failure','error','cancelled','canceled'].includes(state)){
+      showData(d);setErrorDetails(d);
+      const detail=d?.data?.failMsg||d?.data?.error||d?.message||d?.detail||'Task gagal diproses.';
+      status('Generate gagal: '+detail,'err');return;
+    }
+    status('Sedang memproses… ('+(i+1)+'/'+maxAttempts+')');
+  }
+  status('Waktu tunggu habis. Task masih belum selesai; coba lagi nanti.','err');
+}
+$('taskForm').onsubmit=async e=>{
+  e.preventDefault();
+  const key=$('apiKey').value.trim();
+  if(!key){status('Masukkan API key dulu.','err');return}
+  const item=menus[group].find(x=>x.id===$('operation').value);
+  const input=getInput(item);
+  if(item.id==='klingmotion26'){
+    if(!input.image||!input.video){status('Kling 2.6 Motion Control wajib diisi link foto dan link video dari Image2URL.','err');return}
+  }else if(!input.prompt&&!input.audioUrl&&!input.audio_id&&!input.start_image&&item.id!=='lyrics'){
+    status('Isi prompt atau URL media yang dibutuhkan menu ini.','err');return
+  }
+  if(item.id==='generate'&&!input.prompt){status('Prompt wajib diisi untuk Generate Music.','err');return}
+  const btn=$('submitBtn');btn.disabled=true;hideErrorDetails();status('Mengirim request…');$('result').innerHTML='';
+  try{
+    const r=await fetch('/api/create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({apiKey:key,model:item.model,input,channel:$('channel').value})});
+    const t=await r.text(),d=parseJSON(t);showData(d);
+    if(d.errorType==='INSUFFICIENT_CREDIT'||/insufficient credit|kredit akun tidak cukup/i.test(JSON.stringify(d.details||d))){
+      status('Kredit akun tidak cukup untuk model ini. Cek detail error di bawah.','err');setErrorDetails(d);return
+    }
+    if(!r.ok||d.error||d.code&&d.code!==200){
+      status('Request gagal ('+r.status+'). Detail error ditampilkan di bawah.','err');setErrorDetails(d);return
+    }
+    if(hasMedia(d)){showData(d);status('Hasil sudah siap diputar dan diunduh.','ok');return}
+    const taskId=taskIdFrom(d);
+    if(!taskId){
+      status('Request diterima, tetapi task ID tidak ditemukan di respons.','err');setErrorDetails(d);return
+    }
+    status('Task dibuat. Menunggu hasil otomatis…');
+    await pollTask(key,taskId,btn);
+  }catch(err){status('Tidak bisa menghubungi server website: '+err.message,'err');setErrorDetails({error:String(err&&err.message||err)})}
+  finally{btn.disabled=false}
+};
+for(let i=0;i<42;i++){let n=document.createElement('i');n.style.height=(18+(i*17%80))+'%';$('eq').appendChild(n)}renderMenu();
+</script></body></html>
