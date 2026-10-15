@@ -46,11 +46,9 @@ module.exports = async function (req, res) {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify({
-        model,
-        input,
-        channel: data.channel || 'auto'
-      })
+      body: JSON.stringify(model === 'suno/upload-cover'
+        ? { model, input }
+        : { model, input, channel: data.channel || 'auto' })
     });
 
     const raw = await upstream.text();
