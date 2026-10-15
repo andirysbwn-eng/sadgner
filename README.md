@@ -38,3 +38,10 @@ Periksa harga model dan isi ulang kredit ApiPass bila ingin menjalankan model te
 
 ## UI hasil generate
 Panel Task ID dan tombol cek manual dihapus. Setelah task dibuat, halaman mengecek status secara otomatis lalu menampilkan gambar, audio, atau video langsung dengan kontrol putar dan tombol unduh. Detail respons hanya ditampilkan ketika terjadi error.
+
+
+## Suno Upload Cover (Image2URL)
+
+Menu **Cover Generate** memakai model ID `suno/upload-cover` sesuai dokumentasi ApiPass. Upload audio ke Image2URL lalu tempel direct URL MP3 pada kolom URL audio sumber. Link harus publik/tidak memerlukan login, format yang didukung MP3/WAV/OGG/M4A/FLAC, ukuran maksimum 50 MB. Dengan `customMode` aktif, isi `style` dan `title`. Status task dicek melalui endpoint `recordInfo` yang sudah digunakan oleh `/api/status`.
+
+Untuk model `suno/upload-cover`, proxy hanya mengirim `model` dan `input` sesuai contoh dokumentasi; parameter `channel` tidak ditambahkan.
